@@ -8,7 +8,7 @@ export const Error = (props: any) => {
     };
     return (
         <>
-            <div className="grid bg-black/30 absolute w-screen h-screen place-content-center">
+            <div className="absolute top-0 left-0 grid bg-black/30 w-screen h-screen place-content-center">
                 <div className="text-red w-80 shadow">
                     <div className="bg-red-500 p-3 text-white flex justify-between">
                         <h1>ERRO:</h1>

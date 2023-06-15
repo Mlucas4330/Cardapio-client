@@ -14,7 +14,7 @@ const initialState: FoodState = {
     foods: [],
     selectedFood: null,
     loading: false,
-    error: 'asdasdasdasd'
+    error: null
 };
 
 export const findAllFoods = createAsyncThunk('foods/findAll', async () => {
@@ -77,7 +77,7 @@ export const updateFood = createAsyncThunk('foods/update', async (food: Food) =>
     }
 });
 
-export const deleteFood = createAsyncThunk('foods/delete', async (id: string) => {
+export const deleteFood = createAsyncThunk('foods/delete', async (id: string | null | undefined) => {
     try {
         const result = await fetch(`${url}/${id}`, {
             method: 'DELETE'
@@ -107,7 +107,7 @@ export const foodSlice = createSlice({
             })
             .addCase(addFood.fulfilled, (state, action: PayloadAction<Food>) => {
                 state.foods.push(action.payload);
-                window.location.href = '/';
+                window.location.href = '/foods';
             })
             .addCase(updateFood.fulfilled, (state, action: PayloadAction<Food>) => {
                 const updatedFood = action.payload;
@@ -115,11 +115,12 @@ export const foodSlice = createSlice({
                 if (index !== -1) {
                     state.foods[index] = updatedFood;
                 }
-                window.location.href = '/';
+                window.location.href = '/foods';
             })
             .addCase(deleteFood.fulfilled, (state, action: PayloadAction<string>) => {
                 const deletedFoodId = action.payload;
                 state.foods = state.foods.filter(food => food.id !== deletedFoodId);
+                window.location.href = '/foods';
             })
             .addMatcher(
                 action =>

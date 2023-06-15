@@ -45,48 +45,71 @@ export const Form = () => {
     return (
         <>
             {error && <Error error={error} />}
-            <Link className="absolute top-5 left-5 bg-blue-600 hover:bg-blue-700 text-white rounded p-3" to="/">
+            <Link className="absolute top-5 left-5 text-purple-950" to="/foods">
                 Back
             </Link>
-            <div className="container grid place-content-center h-screen">
-                <form className="border rounded shadow px-10 pt-10 pb-5">
-                    <div className="mb-3">
-                        <input
-                            className="border rounded p-3 w-full"
-                            placeholder="Title"
-                            onChange={handleTitle}
-                            defaultValue={food?.title}
-                            type="text"
-                            name="title"
-                            id="title"
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <input
-                            className="border rounded p-3 w-full"
-                            onChange={handlePrice}
-                            placeholder="Price"
-                            defaultValue={food?.price}
-                            type="number"
-                            name="price"
-                            id="price"
-                        />
-                    </div>
-                    <div className="mb-3 flex justify-center">
-                        <label className="text-center" htmlFor="image">
-                            Image
-                            <div className="w-80 h-72">
-                                <img className="min-h-full max-h-full min-w-full max-w-full" src={image !== '' ? image : food?.image} />
+            <div className="h-screen grid place-content-center">
+                <form className="border rounded shadow bg-white px-10 pt-10 pb-5">
+                    <div className="flex gap-10">
+                        <div className="grid place-content-center">
+                            <div className="mb-3">
+                                <input
+                                    className="border rounded p-3 w-full"
+                                    placeholder="Title"
+                                    onChange={handleTitle}
+                                    defaultValue={food?.title}
+                                    type="text"
+                                    name="title"
+                                    id="title"
+                                />
                             </div>
-                        </label>
+
+                            <div className="mb-3">
+                                <input
+                                    className="border rounded p-3"
+                                    onChange={handlePrice}
+                                    placeholder="Price"
+                                    step="0.01"
+                                    defaultValue={food?.price}
+                                    type="number"
+                                    name="price"
+                                    id="price"
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <div className="mb-3 flex justify-center">
+                                <label className="text-center" htmlFor="image">
+                                    <div className="w-80 h-72">
+                                        <img
+                                            className="min-h-full max-h-full min-w-full max-w-full"
+                                            src={image !== '' ? image : food?.image}
+                                        />
+                                    </div>
+                                </label>
+                            </div>
+                            <div className="mb-3">
+                                <input
+                                    className="block w-full text-sm text-gray-500
+                                    file:mr-4 file:py-2 file:px-4
+                                    file:rounded-full file:border-0
+                                    file:text-sm file:font-semibold
+                                    file:bg-violet-50 file:text-purple-950
+                                    hover:file:bg-violet-100"
+                                    accept="image/*"
+                                    onChange={handleFile}
+                                    type="file"
+                                    name="image"
+                                    id="image"
+                                />
+                            </div>
+                        </div>
                     </div>
-                    <div className="mb-3">
-                        <input accept="image/*" onChange={handleFile} type="file" name="image" id="image" />
-                    </div>
+
                     <div className="mb-3">
                         <button
                             type="button"
-                            className="bg-blue-600 rounded hover:bg-blue-700 w-full text-white font-bold py-2 px-4"
+                            className="bg-red-600 rounded hover:bg-red-700 w-full text-white font-bold py-2 px-4"
                             onClick={() => {
                                 id
                                     ? dispatch(updateFood({ id, title, price, image }))

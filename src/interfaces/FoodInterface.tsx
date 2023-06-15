@@ -1,5 +1,5 @@
 export interface Food {
-    id: string | '';
+    id: string | null | undefined;
     title: string;
     price: number;
     image: string;

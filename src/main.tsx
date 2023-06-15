@@ -7,12 +7,17 @@ import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { foodReducer } from './reducers/foodReducer.tsx';
 import userReducer from './reducers/userReducer.tsx';
-import { Food } from './components/Food.tsx';
+import { Food } from './pages/Food.tsx';
+import { Foods } from './pages/Foods.tsx';
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <App />
+    },
+    {
+        path: '/foods',
+        element: <Foods />
     },
     {
         path: '/food/new',
